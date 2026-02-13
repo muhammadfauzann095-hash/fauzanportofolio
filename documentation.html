@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentation | Muhammad Fauzan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins;
+background:linear-gradient(135deg,#0f0f0f,#1a1a2e,#16213e);
+color:white;
+overflow-x:hidden;
+}
+
+/* Header */
+
+header{
+padding:20px 40px;
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(10px);
+}
+
+header a{
+color:#00f2ff;
+text-decoration:none;
+font-weight:600;
+}
+
+/* Gallery */
+
+.gallery{
+padding:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.gallery img{
+width:100%;
+border-radius:12px;
+cursor:pointer;
+transition:0.4s;
+box-shadow:0 0 0px rgba(0,242,255,0);
+}
+
+/* Neon glow hover */
+.gallery img:hover{
+
+transform:scale(1.05);
+
+box-shadow:
+0 0 10px #00f2ff,
+0 0 20px #00f2ff,
+0 0 40px #ff00c8;
+
+}
+
+/* Fullscreen viewer */
+
+.viewer{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,0.9);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+opacity:0;
+
+pointer-events:none;
+
+transition:0.4s;
+
+z-index:999;
+
+}
+
+/* active */
+
+.viewer.active{
+
+opacity:1;
+
+pointer-events:auto;
+
+}
+
+/* image fullscreen */
+
+.viewer img{
+
+max-width:90%;
+
+max-height:90%;
+
+border-radius:15px;
+
+animation:zoomIn 0.4s ease;
+
+box-shadow:
+
+0 0 20px #00f2ff,
+
+0 0 40px #ff00c8,
+
+0 0 80px #00f2ff;
+
+}
+
+/* close button */
+
+.close{
+
+position:absolute;
+
+top:20px;
+
+right:30px;
+
+font-size:30px;
+
+cursor:pointer;
+
+color:white;
+
+transition:0.3s;
+
+}
+
+.close:hover{
+
+color:#ff00c8;
+
+transform:scale(1.2);
+
+}
+
+@keyframes zoomIn{
+
+from{
+
+transform:scale(0.7);
+
+opacity:0;
+
+}
+
+to{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+<a href="index.html">← Kembali ke Portfolio</a>
+
+</header>
+
+<h2 style="padding-left:40px;">Dokumentasi Pekerjaan</h2>
+
+<div class="gallery">
+
+<img src="clubbeach.png">
+<img src="clubbeach2.png">
+<img src="1.png">
+<img src="2.png">
+<img src="3.png">
+<img src="4.png">
+<img src="5.png">
+<img src="6.png">
+<img src="7.png">
+<img src="8.png">
+<img src="9.png">
+<img src="10.png">
+<img src="11.png">
+<img src="12.png">
+<img src="13.png">
+<img src="14.jpg">
+<img src="15.jpg">
+<img src="16.jpg">
+
+</div>
+
+<!-- Fullscreen viewer -->
+
+<div class="viewer" id="viewer">
+
+<span class="close" onclick="closeViewer()">✕</span>
+
+<img id="viewerImg">
+
+</div>
+
+<script>
+
+const images = document.querySelectorAll(".gallery img");
+
+const viewer = document.getElementById("viewer");
+
+const viewerImg = document.getElementById("viewerImg");
+
+images.forEach(img => {
+
+img.addEventListener("click", () => {
+
+viewer.classList.add("active");
+
+viewerImg.src = img.src;
+
+});
+
+});
+
+function closeViewer(){
+
+viewer.classList.remove("active");
+
+}
+
+/* close if click outside image */
+
+viewer.addEventListener("click", (e)=>{
+
+if(e.target === viewer){
+
+closeViewer();
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
